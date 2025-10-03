@@ -1,0 +1,41 @@
+.stat-card {
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow-large);
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-1.5px);
+}
+
+.title {
+    font-size: 1.4rem;
+    color: var(--white);
+    opacity: 0.8;
+    line-height: 2rem;
+}
+
+.value {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.6rem;
+    color: var(--white);
+    margin-top: 8px;
+}
+
+.bonus {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: var(--white);
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.icon {
+    font-size: 3.6rem;
+    margin: auto 0;
+    opacity: 0.8;
+}

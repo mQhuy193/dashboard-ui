@@ -1,0 +1,23 @@
+.wrapper {
+    background-color: transparent;
+    width: 100%;
+}
+
+.stats-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}

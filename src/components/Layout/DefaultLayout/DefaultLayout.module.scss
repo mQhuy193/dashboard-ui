@@ -7,7 +7,10 @@
 
 .container {
     width: 100%;
-    max-width: var(--default-layout-width);
-    padding: 0 var(--default-layout-horizontal-spacer);
     flex-direction: column;
+}
+
+.content {
+    padding: 24px;
+    width: 100%;
 }

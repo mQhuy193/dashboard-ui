@@ -52,7 +52,7 @@ function SideBar() {
                 <div className={cx('logo')}>
                     <FontAwesomeIcon icon={faHouse} />
                 </div>
-                <h1 className={cx('title')}>Phòng trọ</h1>
+                <h1 className={cx('title')}>QL Phòng Trọ</h1>
             </header>
             {/* nav menu */}
             <nav className={cx('nav')}>
