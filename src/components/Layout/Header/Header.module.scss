@@ -24,3 +24,19 @@
     color: rgb(75, 85, 99);
     margin-top: 4px;
 }
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .search {
+        background-color: #f1f2f4;
+    }
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
