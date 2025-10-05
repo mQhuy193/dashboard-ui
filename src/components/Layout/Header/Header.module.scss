@@ -98,3 +98,15 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+    .header-text {
+        display: none;
+    }
+
+    .actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+}

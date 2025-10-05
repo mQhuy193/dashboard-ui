@@ -1,5 +1,5 @@
 .stat-card {
-    border-radius: 12px;
+    border-radius: var(--default-border-radius);
     padding: 24px;
     box-shadow: var(--shadow-large);
     display: flex;

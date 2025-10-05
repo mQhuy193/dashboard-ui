@@ -1,8 +1,12 @@
 import classNames from 'classnames/bind';
 import styles from './Dashboard.module.scss';
 import { colors } from '@mui/material';
+import { useState } from 'react';
 
 import StatCard from '@/components/StatCard';
+import { dataByMonth, dataByYear } from './data';
+import { lineChartConfig, barChartConfig, monthFilterMap, quarterMap } from './chartConfigs';
+import { LineChart, BarChart } from '@/components/Chart';
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +42,48 @@ const StatCards = [
 ];
 
 function Dashboard() {
+    const [lineChartFilters, setLineChartFilters] = useState({
+        first: lineChartConfig.options.first.defaultValue,
+        second: lineChartConfig.options.second.defaultValue,
+    });
+
+    const [barChartFilters, setBarChartFilters] = useState({
+        first: barChartConfig.options.first.defaultValue,
+        second: barChartConfig.options.second.defaultValue,
+    });
+
+    // Hàm lấy data cho line chart theo filter
+    const getLineChartData = (filters) => {
+        const monthKey = monthFilterMap[filters.first] || 'Tháng 12/2024';
+        const monthData = dataByMonth[monthKey] || dataByMonth['Tháng 12/2024'];
+
+        // Chuyển đổi key từ views/likes sang luotXem/luotThich
+        return monthData.map((item) => ({
+            date: item.date,
+            luotXem: item.views,
+            luotThich: item.likes,
+        }));
+    };
+
+    // Hàm lấy data cho bar chart theo filter
+    const getBarChartData = (filters) => {
+        const yearData = dataByYear[filters.first] || dataByYear['2024'];
+
+        // Chuyển đổi từ object sang array
+        const allData = Object.entries(yearData).map(([month, views]) => ({
+            month,
+            views,
+        }));
+
+        // Lọc theo quý nếu cần
+        if (filters.second === 'all') {
+            return allData;
+        }
+
+        const months = quarterMap[filters.second];
+        return allData.filter((item) => months.includes(item.month));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('stats-container')}>
@@ -51,6 +97,26 @@ function Dashboard() {
                         background={item.background}
                     />
                 ))}
+            </div>
+
+            <div className={cx('chart-container')}>
+                {/* Line Chart */}
+                <LineChart
+                    title={lineChartConfig.title}
+                    data={getLineChartData(lineChartFilters)}
+                    chartConfig={lineChartConfig.chartConfig}
+                    options={lineChartConfig.options}
+                    onFilterChange={setLineChartFilters}
+                />
+
+                {/* Bar Chart */}
+                <BarChart
+                    title={barChartConfig.title}
+                    data={getBarChartData(barChartFilters)}
+                    chartConfig={barChartConfig.chartConfig}
+                    options={barChartConfig.options}
+                    onFilterChange={setBarChartFilters}
+                />
             </div>
         </div>
     );

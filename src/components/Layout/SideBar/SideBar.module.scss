@@ -3,6 +3,10 @@
     background-color: var(--white);
     height: 100%;
     box-shadow: var(--shadow-large);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .header {
@@ -14,6 +18,7 @@
     padding: 24px;
     align-items: center;
     justify-content: center;
+    color: var(--text-color);
 
     .logo {
         font-size: 3rem;

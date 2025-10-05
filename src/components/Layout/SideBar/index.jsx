@@ -44,7 +44,6 @@ const navItems = [
 
 function SideBar() {
     const location = useLocation();
-    console.log(location);
 
     return (
         <aside className={cx('wrapper')}>

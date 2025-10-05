@@ -2,6 +2,7 @@
 @import 'normalize.css';
 
 :root {
+    --text-color: rgb(31, 41, 55);
     --white: #fff;
     --shadow-small: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -9,6 +10,8 @@
     --color-interactive: rgb(239, 246, 255);
     --default-margin-bottom: 32px;
     --default-gap: 24px;
+    --default-border-radius: 12px;
+    --default-padding: 24px;
 }
 
 * {
