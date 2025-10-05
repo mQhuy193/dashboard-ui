@@ -1,12 +1,11 @@
-import classNames from 'classnames/bind';
-import styles from './Dashboard.module.scss';
-import { colors } from '@mui/material';
 import { useState } from 'react';
+import classNames from 'classnames/bind';
 
+import styles from './Dashboard.module.scss';
 import StatCard from '@/components/StatCard';
+import { LineChart, BarChart } from '@/components/Chart';
 import { dataByMonth, dataByYear } from './data';
 import { lineChartConfig, barChartConfig, monthFilterMap, quarterMap } from './chartConfigs';
-import { LineChart, BarChart } from '@/components/Chart';
 
 const cx = classNames.bind(styles);
 
@@ -42,6 +41,7 @@ const StatCards = [
 ];
 
 function Dashboard() {
+    // State để lưu filter của từng chart
     const [lineChartFilters, setLineChartFilters] = useState({
         first: lineChartConfig.options.first.defaultValue,
         second: lineChartConfig.options.second.defaultValue,

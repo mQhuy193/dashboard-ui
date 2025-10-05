@@ -63,33 +63,38 @@ const BarChart = ({ title, data, chartConfig, options, onFilterChange }) => {
     return (
         <div className={cx('chart-wrapper')}>
             <div className={cx('chart-header')}>
-                <h2 className={cx('chart-title')}>{title}</h2>
+                <div className={cx('header-top')}>
+                    <h2 className={cx('chart-title')}>{title}</h2>
 
-                {/* Dropdowns */}
-                <div className={cx('chart-options')}>
-                    <select
-                        className={cx('select')}
-                        value={selectedFilters.first}
-                        onChange={(e) => handleFilterChange('first', e.target.value)}
-                    >
-                        {options.first.items.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                    <select
-                        className={cx('select')}
-                        value={selectedFilters.second}
-                        onChange={(e) => handleFilterChange('second', e.target.value)}
-                    >
-                        {options.second.items.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
+                    {/* Dropdowns */}
+                    <div className={cx('chart-options')}>
+                        <select
+                            className={cx('select')}
+                            value={selectedFilters.first}
+                            onChange={(e) => handleFilterChange('first', e.target.value)}
+                        >
+                            {options.first.items.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        <select
+                            className={cx('select')}
+                            value={selectedFilters.second}
+                            onChange={(e) => handleFilterChange('second', e.target.value)}
+                        >
+                            {options.second.items.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
+
+                {/* Empty div để giữ chiều cao giống LineChart */}
+                <div className={cx('line-toggles', 'empty-placeholder')}></div>
             </div>
 
             <ResponsiveContainer width="100%" height={chartConfig.height || 350}>

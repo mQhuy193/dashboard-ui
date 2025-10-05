@@ -88,52 +88,52 @@ const LineChart = ({ title, data, chartConfig, options, onFilterChange }) => {
     return (
         <div className={cx('chart-wrapper')}>
             <div className={cx('chart-header')}>
-                <div className={cx('header-left')}>
+                <div className={cx('header-top')}>
                     <h2 className={cx('chart-title')}>{title}</h2>
 
-                    {/* Checkboxes cho hiển thị đường */}
-                    <div className={cx('line-toggles')}>
-                        {chartConfig.lines.map((line) => (
-                            <label key={line.dataKey} className={cx('toggle-label')}>
-                                <input
-                                    type="checkbox"
-                                    checked={visibleLines[line.dataKey]}
-                                    onChange={() => toggleLine(line.dataKey)}
-                                    className={cx('checkbox')}
-                                />
-                                <div className={cx('line-info')}>
-                                    <div className={cx('line-color')} style={{ backgroundColor: line.stroke }}></div>
-                                    <span className={cx('line-name')}>{line.name}</span>
-                                </div>
-                            </label>
-                        ))}
+                    {/* Dropdowns */}
+                    <div className={cx('chart-options')}>
+                        <select
+                            className={cx('select')}
+                            value={selectedFilters.first}
+                            onChange={(e) => handleFilterChange('first', e.target.value)}
+                        >
+                            {options.first.items.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        <select
+                            className={cx('select')}
+                            value={selectedFilters.second}
+                            onChange={(e) => handleFilterChange('second', e.target.value)}
+                        >
+                            {options.second.items.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
 
-                {/* Dropdowns */}
-                <div className={cx('chart-options')}>
-                    <select
-                        className={cx('select')}
-                        value={selectedFilters.first}
-                        onChange={(e) => handleFilterChange('first', e.target.value)}
-                    >
-                        {options.first.items.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                    <select
-                        className={cx('select')}
-                        value={selectedFilters.second}
-                        onChange={(e) => handleFilterChange('second', e.target.value)}
-                    >
-                        {options.second.items.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
+                {/* Checkboxes cho hiển thị đường */}
+                <div className={cx('line-toggles')}>
+                    {chartConfig.lines.map((line) => (
+                        <label key={line.dataKey} className={cx('toggle-label')}>
+                            <input
+                                type="checkbox"
+                                checked={visibleLines[line.dataKey]}
+                                onChange={() => toggleLine(line.dataKey)}
+                                className={cx('checkbox')}
+                            />
+                            <div className={cx('line-info')}>
+                                <div className={cx('line-color')} style={{ backgroundColor: line.stroke }}></div>
+                                <span className={cx('line-name')}>{line.name}</span>
+                            </div>
+                        </label>
+                    ))}
                 </div>
             </div>
 
