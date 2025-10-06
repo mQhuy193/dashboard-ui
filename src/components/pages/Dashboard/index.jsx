@@ -60,8 +60,8 @@ function Dashboard() {
         // Chuyển đổi key từ views/likes sang luotXem/luotThich
         return monthData.map((item) => ({
             date: item.date,
-            luotXem: item.views,
-            luotThich: item.likes,
+            views: item.views,
+            likes: item.likes,
         }));
     };
 

@@ -24,8 +24,8 @@ export const lineChartConfig = {
     chartConfig: {
         xAxisKey: 'date',
         lines: [
-            { dataKey: 'luotXem', stroke: '#3b82f6', name: 'Lượt xem', strokeWidth: 3 },
-            { dataKey: 'luotThich', stroke: '#ec4899', name: 'Lượt thích', strokeWidth: 3 },
+            { dataKey: 'views', stroke: '#3b82f6', name: 'Lượt xem', strokeWidth: 3 },
+            { dataKey: 'likes', stroke: '#ec4899', name: 'Lượt thích', strokeWidth: 3 },
         ],
         height: 350,
     },
