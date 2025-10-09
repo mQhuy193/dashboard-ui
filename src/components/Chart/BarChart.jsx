@@ -61,7 +61,7 @@ const BarChart = ({ title, data, chartConfig, options, onFilterChange }) => {
     const { yMin, yMax } = getYAxisDomain();
 
     return (
-        <div className={cx('chart-wrapper')}>
+        <React.Fragment>
             <div className={cx('chart-header')}>
                 <div className={cx('header-top')}>
                     <h2 className={cx('chart-title')}>{title}</h2>
@@ -123,7 +123,7 @@ const BarChart = ({ title, data, chartConfig, options, onFilterChange }) => {
                     ))}
                 </RechartsBarChart>
             </ResponsiveContainer>
-        </div>
+        </React.Fragment>
     );
 };
 

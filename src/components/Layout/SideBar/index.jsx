@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faChartColumn, faNewspaper, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faChartColumn, faNewspaper, faChevronDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
@@ -48,10 +48,10 @@ const profile = {
 function SideBar() {
     const location = useLocation();
 
-    const [isVisible, setIsVisible] = useState(false);
+    const [visibleInfo, setVisibleInfo] = useState(false);
 
-    const toggleSideBar = () => {
-        setIsVisible(!isVisible);
+    const toggleInfo = () => {
+        setVisibleInfo(!visibleInfo);
     };
 
     return (
@@ -62,6 +62,16 @@ function SideBar() {
                     <FontAwesomeIcon icon={faHouse} />
                 </div>
                 <h1 className={cx('title')}>QL Phòng Trọ</h1>
+
+                {/* <button className={cx('toggle-btn')} onClick={toggleSideBar}>
+                    <img
+                        width="30"
+                        height="30"
+                        className={cx('toggle-icon')}
+                        src="https://img.icons8.com/ios-filled/50/hide-sidepanel.png"
+                        alt="hide-sidepanel"
+                    />
+                </button> */}
             </header>
 
             {/* profile */}
@@ -72,15 +82,15 @@ function SideBar() {
                     <p className={cx('role')}>
                         {profile.role} • Tham gia từ {profile.joinDate}
                     </p>
-                    <button className={cx('more-btn')} onClick={toggleSideBar}>
-                        {isVisible ? 'Thu gọn' : 'Xem thêm'}
-                        <span className={cx('more-btn-icon', { active: isVisible })}>
+                    <button className={cx('more-btn')} onClick={toggleInfo}>
+                        {visibleInfo ? 'Thu gọn' : 'Xem thêm'}
+                        <span className={cx('more-btn-icon', { active: visibleInfo })}>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </span>
                     </button>
                 </div>
 
-                <div className={cx('profile-info', { visible: isVisible })}>
+                <div className={cx('profile-info', { visible: visibleInfo })}>
                     <Section title="Email" value={profile.email} icon={<MailIcon sx={{ fontSize: 20 }} />} />
                     <Section
                         title="Số điện thoại"

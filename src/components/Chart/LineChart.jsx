@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, Fragment } from 'react';
 import {
     LineChart as RechartsLineChart,
     Line,
@@ -86,7 +86,7 @@ const LineChart = ({ title, data, chartConfig, options, onFilterChange }) => {
     const { yMin, yMax } = getYAxisDomain();
 
     return (
-        <div className={cx('chart-wrapper')}>
+        <React.Fragment>
             <div className={cx('chart-header')}>
                 <div className={cx('header-top')}>
                     <h2 className={cx('chart-title')}>{title}</h2>
@@ -187,7 +187,7 @@ const LineChart = ({ title, data, chartConfig, options, onFilterChange }) => {
                     ))}
                 </ComposedChart>
             </ResponsiveContainer>
-        </div>
+        </React.Fragment>
     );
 };
 
