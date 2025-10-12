@@ -1,9 +1,11 @@
 .wrapper {
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 2rem;
     min-width: 100px;
-    padding: 9px 16px;
-    border-radius: 4px;
+    height: 36px;
+    padding: 8px 12px;
+    border-radius: 8px;
     cursor: pointer;
     background-color: var(--white);
     border: 1px solid transparent;
@@ -33,7 +35,8 @@
     height: 18px;
     margin-right: 4px;
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 1.6rem;
 }
 
 //Button
@@ -56,7 +59,7 @@
     &:hover {
         border-color: var(--primary);
 
-        background-color: #74a5f5;
+        background-color: #3c7be0;
     }
 }
 

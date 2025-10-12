@@ -2,6 +2,8 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faChartColumn, faNewspaper, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faMessage, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import MailIcon from '@mui/icons-material/Mail';
@@ -13,7 +15,8 @@ import FemaleIcon from '@mui/icons-material/Female';
 
 import styles from './SideBar.module.scss';
 import images from '~/assets/images';
-import Section from '~/components/Section';
+import InfoItem from '~/components/InfoItem';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -44,6 +47,21 @@ const profile = {
     isActivedPhone: true,
     is2Fa: true,
 };
+
+const btnItems = [
+    {
+        title: 'Thêm bài viết',
+        leftIcon: <FontAwesomeIcon icon={faPlus} />,
+    },
+    {
+        title: 'Tin nhắn',
+        leftIcon: <FontAwesomeIcon icon={faMessage} />,
+    },
+    {
+        title: 'Sửa thông tin',
+        leftIcon: <FontAwesomeIcon icon={faPenToSquare} />,
+    },
+];
 
 function SideBar() {
     const location = useLocation();
@@ -81,14 +99,14 @@ function SideBar() {
                 </div>
 
                 <div className={cx('profile-info', { visible: isVisible })}>
-                    <Section title="Email" value={profile.email} icon={<MailIcon sx={{ fontSize: 20 }} />} />
-                    <Section
+                    <InfoItem title="Email" value={profile.email} icon={<MailIcon sx={{ fontSize: 20 }} />} />
+                    <InfoItem
                         title="Số điện thoại"
                         value={profile.phoneNumber}
                         icon={<PhoneIcon sx={{ fontSize: 20 }} />}
                     />
                     <div className={cx('divider')}>
-                        <Section
+                        <InfoItem
                             title="Giới tính"
                             value={profile.isMale ? 'Nam' : 'Nữ'}
                             iconRight={
@@ -100,14 +118,14 @@ function SideBar() {
                             }
                             size="medium"
                         />
-                        <Section
+                        <InfoItem
                             title="Ngày sinh"
                             value={profile.dateOfBirth}
                             icon={<CalendarMonthIcon sx={{ fontSize: 20 }} />}
                             size="medium"
                         />
                     </div>
-                    <Section title="Nơi ở" value={profile.address} icon={<LocationOnIcon sx={{ fontSize: 20 }} />} />
+                    <InfoItem title="Nơi ở" value={profile.address} icon={<LocationOnIcon sx={{ fontSize: 20 }} />} />
                 </div>
 
                 {/* nav menu */}
@@ -124,6 +142,13 @@ function SideBar() {
                         </Link>
                     ))}
                 </nav>
+                <div className={cx('btn-container')}>
+                    {btnItems.map((item, index) => (
+                        <Button leftIcon={item.leftIcon} key={index} size="large" primary className={cx('btn')}>
+                            {item.title}
+                        </Button>
+                    ))}
+                </div>
             </div>
         </aside>
     );

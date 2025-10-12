@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
@@ -18,26 +19,50 @@ function Button({
     className,
     children,
     onClick,
+    color,
+    backgroundColor,
+    hoverBackground,
     ...passProps
 }) {
+    const [isHovered, setIsHovered] = useState(false);
+
     let Comp = 'button';
     const props = {
         onClick,
+        ...passProps,
     };
 
+    const currentBgColor = isHovered && hoverBackground && !disabled ? hoverBackground : backgroundColor;
+
+    if (currentBgColor) {
+        props.style = {
+            backgroundColor: currentBgColor,
+            transition: 'background-color 0.3s ease, transform 0.2s ease',
+            ...(props.style || {}),
+        };
+    }
+
+    if (hoverBackground && !disabled) {
+        props.onMouseEnter = (e) => {
+            setIsHovered(true);
+            passProps.onMouseEnter?.(e);
+        };
+        props.onMouseLeave = (e) => {
+            setIsHovered(false);
+            passProps.onMouseLeave?.(e);
+        };
+    }
+
     if (disabled) {
-        Object.assign(props, {
-            disabled,
-            className: `${className} ${styles.disabled}`,
-        });
+        props.disabled = disabled;
     }
 
     if (to) {
         props.to = to;
-        comp = Link;
+        Comp = Link;
     } else if (href) {
         props.href = href;
-        comp = 'a';
+        Comp = 'a';
     }
 
     const classes = cx('wrapper', {

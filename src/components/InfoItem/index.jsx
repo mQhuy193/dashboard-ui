@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './Section.module.scss';
+import styles from './InfoItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Section({ title, value, icon = null, iconRight = null, size = 'large', children }) {
+function InfoItem({ title, value, icon = null, iconRight = null, size = 'large', children }) {
     const classes = cx('wrapper', {
         [size]: size,
     });
@@ -22,4 +22,4 @@ function Section({ title, value, icon = null, iconRight = null, size = 'large', 
     );
 }
 
-export default Section;
+export default InfoItem;
