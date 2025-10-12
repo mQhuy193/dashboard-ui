@@ -160,7 +160,7 @@ function Dashboard() {
 
             <div className={cx('content-container')}>
                 {/* Line Chart */}
-                <div className={cx('box')}>
+                <div className={cx('content-box')}>
                     <LineChart
                         title={lineChartConfig.title}
                         data={getLineChartData(lineChartFilters)}
@@ -171,7 +171,7 @@ function Dashboard() {
                 </div>
 
                 {/* Bar Chart */}
-                <div className={cx('box')}>
+                <div className={cx('content-box')}>
                     <BarChart
                         title={barChartConfig.title}
                         data={getBarChartData(barChartFilters)}
@@ -182,8 +182,8 @@ function Dashboard() {
                 </div>
             </div>
             <div className={cx('content-container')}>
-                <div className={cx('box')}></div>
-                <div className={cx('box')}></div>
+                <div className={cx('content-box')}></div>
+                <div className={cx('content-box')}></div>
             </div>
         </div>
     );
