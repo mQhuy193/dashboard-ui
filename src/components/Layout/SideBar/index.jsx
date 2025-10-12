@@ -99,6 +99,9 @@ function SideBar() {
                 </div>
 
                 <div className={cx('profile-info', { visible: visibleInfo })}>
+                    <Button leftIcon={changeInfoBtn.leftIcon} size="large" primary className={cx('change-info-btn')}>
+                        {changeInfoBtn.title}
+                    </Button>
                     <InfoItem title="Email" value={profile.email} icon={<MailIcon sx={{ fontSize: 20 }} />} />
                     <InfoItem
                         title="Số điện thoại"
@@ -142,10 +145,6 @@ function SideBar() {
                         </Link>
                     ))}
                 </nav>
-
-                <Button leftIcon={changeInfoBtn.leftIcon} size="large" primary className={cx('btn')}>
-                    {changeInfoBtn.title}
-                </Button>
             </div>
         </aside>
     );

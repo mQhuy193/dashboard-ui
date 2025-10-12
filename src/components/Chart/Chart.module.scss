@@ -94,7 +94,7 @@
 }
 
 .select {
-    padding: 8px 16px;
+    padding: 8px;
     border: 2px solid #3b82f6;
     border-radius: 8px;
     background: white;
@@ -104,7 +104,7 @@
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
-    height: 40px; // Fixed height
+    height: 34px; // Fixed height
 
     &:hover {
         background: #eff6ff;

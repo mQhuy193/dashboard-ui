@@ -1,0 +1,50 @@
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.8rem;
+    color: rgb(31, 41, 55);
+    margin-bottom: 16px;
+}
+
+.ranking-list {
+    height: 320px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.item {
+    border-radius: var(--default-border-radius);
+
+    height: 72px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background-color: rgb(249, 250, 251);
+        cursor: pointer;
+    }
+}
+
+.thumbnail {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--default-border-radius);
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.item-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2rem;
+    color: var(--text-color);
+}
+
+.value {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: rgb(107, 114, 128);
+}

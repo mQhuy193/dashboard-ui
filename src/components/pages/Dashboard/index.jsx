@@ -8,6 +8,8 @@ import StatCard from '@/components/StatCard';
 import { dataByMonth, dataByYear } from './data';
 import { lineChartConfig, barChartConfig, monthFilterMap, quarterMap } from './chartConfigs';
 import { LineChart, BarChart } from '@/components/Chart';
+import Ranking from '@/components/Ranking';
+import images from '@/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -47,26 +49,32 @@ const rankingItems = [
         title: 'Top bài viết nhiều lượt xem',
         unit: 'lượt xem',
         icon: <FontAwesomeIcon icon={faEye} />,
+        iconColor: '#3b82f6',
         data: [
             {
                 title: 'Phòng trọ cao cấp Q1, full nội thất',
                 value: 2345,
+                thumbnail: images.house,
             },
             {
                 title: 'Căn hộ mini Q7, giá rẻ, gần trường',
                 value: 1987,
+                thumbnail: images.house,
             },
             {
                 title: 'Phòng trọ Q3, an ninh tốt, có thang máy',
                 value: 1756,
+                thumbnail: images.house,
             },
             {
                 title: 'Studio Q2, view đẹp, giá tốt',
                 value: 1543,
+                thumbnail: images.house,
             },
             {
                 title: 'Phòng trọ Q10, gần chợ, tiện ích đầy đủ',
                 value: 1432,
+                thumbnail: images.house,
             },
         ],
     },
@@ -74,26 +82,32 @@ const rankingItems = [
         title: 'Top bài viết nhiều lượt thích',
         unit: 'lượt thích',
         icon: <FontAwesomeIcon icon={faHeart} />,
+        iconColor: '#ec4899',
         data: [
             {
                 title: 'Phòng trọ cao cấp Q1, full nội thất',
                 value: 2345,
+                thumbnail: images.house,
             },
             {
                 title: 'Căn hộ mini Q7, giá rẻ, gần trường',
                 value: 1987,
+                thumbnail: images.house,
             },
             {
                 title: 'Phòng trọ Q3, an ninh tốt, có thang máy',
                 value: 1756,
+                thumbnail: images.house,
             },
             {
                 title: 'Studio Q2, view đẹp, giá tốt',
                 value: 1543,
+                thumbnail: images.house,
             },
             {
                 title: 'Phòng trọ Q10, gần chợ, tiện ích đầy đủ',
                 value: 1432,
+                thumbnail: images.house,
             },
         ],
     },
@@ -182,8 +196,11 @@ function Dashboard() {
                 </div>
             </div>
             <div className={cx('content-container')}>
-                <div className={cx('content-box')}></div>
-                <div className={cx('content-box')}></div>
+                {rankingItems.map((item, index) => (
+                    <div key={index} className={cx('content-box')}>
+                        <Ranking title={item.title} data={item.data} icon={item.icon} iconColor={item.iconColor} />
+                    </div>
+                ))}
             </div>
         </div>
     );
