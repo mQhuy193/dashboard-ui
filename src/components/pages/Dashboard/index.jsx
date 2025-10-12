@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Dashboard.module.scss';
 import StatCard from '@/components/StatCard';
-import { LineChart, BarChart } from '@/components/Chart';
 import { dataByMonth, dataByYear } from './data';
 import { lineChartConfig, barChartConfig, monthFilterMap, quarterMap } from './chartConfigs';
+import { LineChart, BarChart } from '@/components/Chart';
 
 const cx = classNames.bind(styles);
 
@@ -37,6 +39,63 @@ const StatCards = [
         bonus: '+5 bài mới hôm nay',
         icon: '📝',
         background: 'linear-gradient(135deg, #fa7594, #ffdc42)',
+    },
+];
+
+const rankingItems = [
+    {
+        title: 'Top bài viết nhiều lượt xem',
+        unit: 'lượt xem',
+        icon: <FontAwesomeIcon icon={faEye} />,
+        data: [
+            {
+                title: 'Phòng trọ cao cấp Q1, full nội thất',
+                value: 2345,
+            },
+            {
+                title: 'Căn hộ mini Q7, giá rẻ, gần trường',
+                value: 1987,
+            },
+            {
+                title: 'Phòng trọ Q3, an ninh tốt, có thang máy',
+                value: 1756,
+            },
+            {
+                title: 'Studio Q2, view đẹp, giá tốt',
+                value: 1543,
+            },
+            {
+                title: 'Phòng trọ Q10, gần chợ, tiện ích đầy đủ',
+                value: 1432,
+            },
+        ],
+    },
+    {
+        title: 'Top bài viết nhiều lượt thích',
+        unit: 'lượt thích',
+        icon: <FontAwesomeIcon icon={faHeart} />,
+        data: [
+            {
+                title: 'Phòng trọ cao cấp Q1, full nội thất',
+                value: 2345,
+            },
+            {
+                title: 'Căn hộ mini Q7, giá rẻ, gần trường',
+                value: 1987,
+            },
+            {
+                title: 'Phòng trọ Q3, an ninh tốt, có thang máy',
+                value: 1756,
+            },
+            {
+                title: 'Studio Q2, view đẹp, giá tốt',
+                value: 1543,
+            },
+            {
+                title: 'Phòng trọ Q10, gần chợ, tiện ích đầy đủ',
+                value: 1432,
+            },
+        ],
     },
 ];
 
@@ -99,24 +158,32 @@ function Dashboard() {
                 ))}
             </div>
 
-            <div className={cx('chart-container')}>
+            <div className={cx('content-container')}>
                 {/* Line Chart */}
-                <LineChart
-                    title={lineChartConfig.title}
-                    data={getLineChartData(lineChartFilters)}
-                    chartConfig={lineChartConfig.chartConfig}
-                    options={lineChartConfig.options}
-                    onFilterChange={setLineChartFilters}
-                />
+                <div className={cx('content-box')}>
+                    <LineChart
+                        title={lineChartConfig.title}
+                        data={getLineChartData(lineChartFilters)}
+                        chartConfig={lineChartConfig.chartConfig}
+                        options={lineChartConfig.options}
+                        onFilterChange={setLineChartFilters}
+                    />
+                </div>
 
                 {/* Bar Chart */}
-                <BarChart
-                    title={barChartConfig.title}
-                    data={getBarChartData(barChartFilters)}
-                    chartConfig={barChartConfig.chartConfig}
-                    options={barChartConfig.options}
-                    onFilterChange={setBarChartFilters}
-                />
+                <div className={cx('content-box')}>
+                    <BarChart
+                        title={barChartConfig.title}
+                        data={getBarChartData(barChartFilters)}
+                        chartConfig={barChartConfig.chartConfig}
+                        options={barChartConfig.options}
+                        onFilterChange={setBarChartFilters}
+                    />
+                </div>
+            </div>
+            <div className={cx('content-container')}>
+                <div className={cx('content-box')}></div>
+                <div className={cx('content-box')}></div>
             </div>
         </div>
     );

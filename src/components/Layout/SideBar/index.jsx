@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faChartColumn, faNewspaper, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faChartColumn, faNewspaper, faChevronDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { icon } from '@fortawesome/fontawesome-svg-core';
 import { faMessage, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -48,28 +48,18 @@ const profile = {
     is2Fa: true,
 };
 
-const btnItems = [
-    {
-        title: 'Thêm bài viết',
-        leftIcon: <FontAwesomeIcon icon={faPlus} />,
-    },
-    {
-        title: 'Tin nhắn',
-        leftIcon: <FontAwesomeIcon icon={faMessage} />,
-    },
-    {
-        title: 'Sửa thông tin',
-        leftIcon: <FontAwesomeIcon icon={faPenToSquare} />,
-    },
-];
+const changeInfoBtn = {
+    title: 'Sửa thông tin',
+    leftIcon: <FontAwesomeIcon icon={faPenToSquare} />,
+};
 
 function SideBar() {
     const location = useLocation();
 
-    const [isVisible, setIsVisible] = useState(false);
+    const [visibleInfo, setVisibleInfo] = useState(false);
 
-    const toggleSideBar = () => {
-        setIsVisible(!isVisible);
+    const toggleInfo = () => {
+        setVisibleInfo(!visibleInfo);
     };
 
     return (
@@ -80,6 +70,16 @@ function SideBar() {
                     <FontAwesomeIcon icon={faHouse} />
                 </div>
                 <h1 className={cx('title')}>QL Phòng Trọ</h1>
+
+                {/* <button className={cx('toggle-btn')} onClick={toggleSideBar}>
+                    <img
+                        width="30"
+                        height="30"
+                        className={cx('toggle-icon')}
+                        src="https://img.icons8.com/ios-filled/50/hide-sidepanel.png"
+                        alt="hide-sidepanel"
+                    />
+                </button> */}
             </header>
 
             {/* profile */}
@@ -90,15 +90,15 @@ function SideBar() {
                     <p className={cx('role')}>
                         {profile.role} • Tham gia từ {profile.joinDate}
                     </p>
-                    <button className={cx('more-btn')} onClick={toggleSideBar}>
-                        {isVisible ? 'Thu gọn' : 'Xem thêm'}
-                        <span className={cx('more-btn-icon', { active: isVisible })}>
+                    <button className={cx('more-btn')} onClick={toggleInfo}>
+                        {visibleInfo ? 'Thu gọn' : 'Xem thêm'}
+                        <span className={cx('more-btn-icon', { active: visibleInfo })}>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </span>
                     </button>
                 </div>
 
-                <div className={cx('profile-info', { visible: isVisible })}>
+                <div className={cx('profile-info', { visible: visibleInfo })}>
                     <InfoItem title="Email" value={profile.email} icon={<MailIcon sx={{ fontSize: 20 }} />} />
                     <InfoItem
                         title="Số điện thoại"
@@ -142,13 +142,10 @@ function SideBar() {
                         </Link>
                     ))}
                 </nav>
-                <div className={cx('btn-container')}>
-                    {btnItems.map((item, index) => (
-                        <Button leftIcon={item.leftIcon} key={index} size="large" primary className={cx('btn')}>
-                            {item.title}
-                        </Button>
-                    ))}
-                </div>
+
+                <Button leftIcon={changeInfoBtn.leftIcon} size="large" primary className={cx('btn')}>
+                    {changeInfoBtn.title}
+                </Button>
             </div>
         </aside>
     );
