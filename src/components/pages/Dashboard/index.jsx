@@ -114,6 +114,32 @@ const rankingItems = [
 ];
 
 function Dashboard() {
+    //Test api
+    fetch('http://localhost:8080/api/managers/getAll', {
+        method: 'GET',
+        headers: {
+            Authorization: 'Bearer YOUR_JWT_TOKEN_HERE', // thay token thật vào
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log('Danh sách managers:', data);
+            data.forEach((manager) => {
+                console.log(`
+        ID: ${manager.managerId}
+        Tên: ${manager.userName}
+        Email: ${manager.email}
+        SĐT: ${manager.phone}
+        Địa chỉ: ${manager.address}
+        CMND: ${manager.cmnd}
+        Vai trò: ${manager.role}
+        Ngày tạo: ${manager.createdAt}
+      `);
+            });
+        })
+        .catch((err) => console.error('Lỗi khi gọi API:', err));
+
     // State để lưu filter của từng chart
     const [lineChartFilters, setLineChartFilters] = useState({
         first: lineChartConfig.options.first.defaultValue,
