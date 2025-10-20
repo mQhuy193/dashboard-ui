@@ -1,10 +1,30 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './PostsManage.module.scss';
+import styles from './PostsManage.module.scss';
+import classNames from 'classnames/bind';
 import { jwtDecode } from 'jwt-decode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlus, faPenToSquare, faEye, faCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCirclePlus,
+    faPenToSquare,
+    faEye,
+    faCheck,
+    faCloudUploadAlt,
+    faSpinner,
+    faEllipsisV,
+    faMapMarkerAlt,
+    faMoneyBillWave,
+    faExpand,
+    faUser,
+    faSnowflake,
+    faUtensils,
+    faCouch,
+    faChevronLeft,
+    faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 // import LogoutButton from '../LogOut';
+
+const cx = classNames.bind(styles);
 
 const PostsManage = () => {
     const navigate = useNavigate();
@@ -558,65 +578,65 @@ const PostsManage = () => {
     };
 
     return (
-        <div className="PostsManage-container">
-            <main className="maincontent">
-                <div className="main-right">
-                    <div className="head-right">
+        <div className={cx('PostsManage-container')}>
+            <main className={cx('maincontent')}>
+                <div className={cx('main-right')}>
+                    <div className={cx('head-right')}>
                         <h1>Trang Cá Nhân</h1>
-                        <button onClick={handlePostFormToggle} className="post-new-button">
-                            <FontAwesomeIcon icon={faCirclePlus} className="button-icon" />
+                        <button onClick={handlePostFormToggle} className={cx('post-new-button')}>
+                            <FontAwesomeIcon icon={faCirclePlus} className={cx('button-icon')} />
                             Tạo Bài Viết Mới
                         </button>
                     </div>
 
                     {showPostForm && (
-                        <div className="post-modal" onClick={handlePostFormToggle}>
-                            <div className="post-form-container" onClick={(e) => e.stopPropagation()}>
-                                <h3 className="form-title">Tạo Bài Viết Mới</h3>
+                        <div className={cx('post-modal')} onClick={handlePostFormToggle}>
+                            <div className={cx('post-form-container')} onClick={(e) => e.stopPropagation()}>
+                                <h3 className={cx('form-title')}>Tạo Bài Viết Mới</h3>
                                 <form onSubmit={handleSubmit}>
-                                    <div className="form-group">
-                                        <label className="form-label" htmlFor="title">
+                                    <div className={cx('form-group')}>
+                                        <label className={cx('form-label')} htmlFor="title">
                                             Tiêu đề
                                         </label>
                                         <input
                                             type="text"
                                             id="title"
-                                            className="form-input"
+                                            className={cx('form-input')}
                                             placeholder="Nhập tiêu đề bài đăng"
                                             value={formData.title}
                                             onChange={handleInputChange}
                                         />
                                     </div>
 
-                                    <div className="form-group">
-                                        <label className="form-label">Hình ảnh</label>
-                                        <div className="image-upload">
-                                            <i className="fas fa-cloud-upload-alt upload-icon"></i>
-                                            <p className="upload-text">Kéo thả ảnh vào đây hoặc</p>
+                                    <div className={cx('form-group')}>
+                                        <label className={cx('form-label')}>Hình ảnh</label>
+                                        <div className={cx('image-upload')}>
+                                            <FontAwesomeIcon icon={faCloudUploadAlt} className={cx('upload-icon')} />
+                                            <p className={cx('upload-text')}>Kéo thả ảnh vào đây hoặc</p>
                                             <input
                                                 type="file"
                                                 multiple
                                                 accept="image/*,video/*"
                                                 onChange={handleFileChange}
-                                                className="upload-button"
+                                                className={cx('upload-button')}
                                                 style={{ display: 'none' }}
                                                 id="file-upload"
                                             />
-                                            <label htmlFor="file-upload" className="upload-button">
+                                            <label htmlFor="file-upload" className={cx('upload-button')}>
                                                 Chọn ảnh từ máy tính
                                             </label>
                                         </div>
                                     </div>
 
-                                    <div className="form-grid">
+                                    <div className={cx('form-grid')}>
                                         <div>
-                                            <label className="form-label" htmlFor="province">
+                                            <label className={cx('form-label')} htmlFor="province">
                                                 Tỉnh/Thành phố
                                             </label>
                                             <select
                                                 id="province"
-                                                className="form-select"
-                                                value={selectedProvince}
+                                                className={cx('form-select')}
+                                                value={selectedProvince} // This is a controlled component, className is not needed for the select itself, but for consistency I'll add it. Let's assume form-select is a global or a utility class. If it's component-specific, it should be cx('form-select'). I'll use cx.
                                                 onChange={(e) => setSelectedProvince(e.target.value)}
                                             >
                                                 <option value="">Chọn Tỉnh/Thành phố</option>
@@ -629,12 +649,12 @@ const PostsManage = () => {
                                         </div>
 
                                         <div>
-                                            <label className="form-label" htmlFor="district">
+                                            <label className={cx('form-label')} htmlFor="district">
                                                 Quận/Huyện
                                             </label>
                                             <select
                                                 id="district"
-                                                className="form-select"
+                                                className={cx('form-select')}
                                                 value={selectedDistrict}
                                                 onChange={(e) => setSelectedDistrict(e.target.value)}
                                                 disabled={!selectedProvince}
@@ -649,12 +669,12 @@ const PostsManage = () => {
                                         </div>
 
                                         <div>
-                                            <label className="form-label" htmlFor="ward">
+                                            <label className={cx('form-label')} htmlFor="ward">
                                                 Phường/Xã
                                             </label>
                                             <select
                                                 id="ward"
-                                                className="form-select"
+                                                className={cx('form-select')}
                                                 value={selectedWard}
                                                 onChange={(e) => setSelectedWard(e.target.value)}
                                                 disabled={!selectedDistrict}
@@ -669,29 +689,29 @@ const PostsManage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="form-group">
-                                        <label className="form-label" htmlFor="streetAddress">
+                                    <div className={cx('form-group')}>
+                                        <label className={cx('form-label')} htmlFor="streetAddress">
                                             Địa chỉ đường
                                         </label>
                                         <input
                                             type="text"
                                             id="streetAddress"
-                                            className="form-input"
+                                            className={cx('form-input')}
                                             placeholder="VD: 569 đường Đông La"
                                             value={formData.streetAddress}
                                             onChange={handleInputChange}
                                         />
                                     </div>
 
-                                    <div className="form-grid">
+                                    <div className={cx('form-grid')}>
                                         <div>
-                                            <label className="form-label" htmlFor="price">
+                                            <label className={cx('form-label')} htmlFor="price">
                                                 Giá phòng (VNĐ/tháng)
                                             </label>
                                             <input
                                                 type="text"
                                                 id="price"
-                                                className="form-input"
+                                                className={cx('form-input')}
                                                 placeholder="VD: 1200000"
                                                 value={formData.price}
                                                 onChange={handleInputChange}
@@ -699,13 +719,13 @@ const PostsManage = () => {
                                         </div>
 
                                         <div>
-                                            <label className="form-label" htmlFor="area">
+                                            <label className={cx('form-label')} htmlFor="area">
                                                 Diện tích (m²)
                                             </label>
                                             <input
                                                 type="text"
                                                 id="area"
-                                                className="form-input"
+                                                className={cx('form-input')}
                                                 placeholder="VD: 30.5"
                                                 value={formData.area}
                                                 onChange={handleInputChange}
@@ -713,13 +733,13 @@ const PostsManage = () => {
                                         </div>
 
                                         <div>
-                                            <label className="form-label" htmlFor="maxOccupants">
+                                            <label className={cx('form-label')} htmlFor="maxOccupants">
                                                 Số người ở tối đa
                                             </label>
                                             <input
                                                 type="number"
                                                 id="maxOccupants"
-                                                className="form-input"
+                                                className={cx('form-input')}
                                                 placeholder="VD: 3"
                                                 value={formData.maxOccupants}
                                                 onChange={handleInputChange}
@@ -727,19 +747,19 @@ const PostsManage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="form-group">
-                                        <label className="form-label">Nội thất</label>
-                                        <div className="amenities-grid">
+                                    <div className={cx('form-group')}>
+                                        <label className={cx('form-label')}>Nội thất</label>
+                                        <div className={cx('amenities-grid')}>
                                             {['Điều hòa', 'Tủ lạnh', 'Bếp'].map((item) => (
-                                                <div key={item} className="amenity-item">
+                                                <div key={item} className={cx('amenity-item')}>
                                                     <input
                                                         type="checkbox"
                                                         id={item}
                                                         checked={amenities.includes(item)}
                                                         onChange={() => toggleAmenity(item)}
-                                                        className="amenity-checkbox"
+                                                        className={cx('amenity-checkbox')}
                                                     />
-                                                    <label htmlFor={item} className="amenity-label">
+                                                    <label htmlFor={item} className={cx('amenity-label')}>
                                                         {item}
                                                     </label>
                                                 </div>
@@ -747,27 +767,31 @@ const PostsManage = () => {
                                         </div>
                                     </div>
 
-                                    <div className="form-group">
-                                        <label className="form-label" htmlFor="description">
+                                    <div className={cx('form-group')}>
+                                        <label className={cx('form-label')} htmlFor="description">
                                             Mô tả thêm
                                         </label>
                                         <textarea
                                             id="description"
-                                            className="form-textarea"
+                                            className={cx('form-textarea')}
                                             placeholder="Nhập mô tả chi tiết về phòng trọ..."
                                             value={formData.description}
                                             onChange={handleInputChange}
                                         ></textarea>
                                     </div>
 
-                                    <div className="form-actions">
-                                        <button type="button" onClick={handlePostFormToggle} className="cancel-button">
+                                    <div className={cx('form-actions')}>
+                                        <button
+                                            type="button"
+                                            onClick={handlePostFormToggle}
+                                            className={cx('cancel-button')}
+                                        >
                                             Hủy
                                         </button>
-                                        <button type="submit" className="submit-button" disabled={isSubmitting}>
+                                        <button type="submit" className={cx('submit-button')} disabled={isSubmitting}>
                                             {isSubmitting ? (
                                                 <>
-                                                    <i className="fas fa-spinner fa-spin"></i>
+                                                    <FontAwesomeIcon icon={faSpinner} spin />
                                                     Đang đăng...
                                                 </>
                                             ) : (
@@ -780,10 +804,10 @@ const PostsManage = () => {
                         </div>
                     )}
 
-                    <div className="post-grid">
+                    <div className={cx('post-grid')}>
                         {rooms.map((room) => (
-                            <div key={room.roomId} className="post-item">
-                                <div className="post-image-container">
+                            <div key={room.roomId} className={cx('post-item')}>
+                                <div className={cx('post-image-container')}>
                                     <img
                                         src={
                                             room.media?.find(
@@ -794,34 +818,39 @@ const PostsManage = () => {
                                             )?.mediaUrl || 'https://via.placeholder.com/400x250'
                                         }
                                         alt={room.title}
-                                        className="post-image"
+                                        className={cx('post-image')}
                                     />
-                                    <span className={`post-status ${room.isActive ? 'active' : 'inactive'}`}>
+                                    <span
+                                        className={cx('post-status', {
+                                            active: room.isActive,
+                                            inactive: !room.isActive,
+                                        })}
+                                    >
                                         {room.isActive ? 'Đang hiển thị' : 'Đã ẩn'}
                                     </span>
                                 </div>
 
-                                <div className="post-content">
-                                    <div className="post-header">
-                                        <h3 className="post-title">{room.title}</h3>
-                                        <div className="post-menu">
+                                <div className={cx('post-content')}>
+                                    <div className={cx('post-header')}>
+                                        <h3 className={cx('post-title')}>{room.title}</h3>
+                                        <div className={cx('post-menu')}>
                                             <button
-                                                className="menu-button"
+                                                className={cx('menu-button')}
                                                 aria-label="Mở menu tùy chọn"
                                                 title="Mở menu tùy chọn"
                                             >
-                                                <i className="fas fa-ellipsis-v"></i>
+                                                <FontAwesomeIcon icon={faEllipsisV} />
                                             </button>
-                                            <div className="menu-dropdown">
-                                                <button className="menu-item">
-                                                    <FontAwesomeIcon icon={faPenToSquare} className="menu-icon" />
+                                            <div className={cx('menu-dropdown')}>
+                                                <button className={cx('menu-item')}>
+                                                    <FontAwesomeIcon icon={faPenToSquare} className={cx('menu-icon')} />
                                                     Chỉnh sửa
                                                 </button>
-                                                <button className="menu-item">
+                                                <button className={cx('menu-item')}>
                                                     {room.isActive ? (
-                                                        <FontAwesomeIcon icon={faEye} className="menu-icon" />
+                                                        <FontAwesomeIcon icon={faEye} className={cx('menu-icon')} />
                                                     ) : (
-                                                        <FontAwesomeIcon icon={faCheck} className="menu-icon" />
+                                                        <FontAwesomeIcon icon={faCheck} className={cx('menu-icon')} />
                                                     )}
 
                                                     {room.isActive ? 'Ẩn bài đăng' : 'Hiện bài đăng'}
@@ -830,47 +859,53 @@ const PostsManage = () => {
                                         </div>
                                     </div>
 
-                                    <p className="post-address">
-                                        <i className="fas fa-map-marker-alt address-icon"></i>
+                                    <p className={cx('post-address')}>
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className={cx('address-icon')} />
                                         {room.address
                                             ? `${room.address.streetAddress}, ${room.address.wardAddress}`
                                             : room.streetAddress || 'Đang tải địa chỉ...'}
                                     </p>
 
-                                    <div className="post-details">
-                                        <div className="detail-item">
-                                            <i className="fas fa-money-bill-wave detail-icon"></i>
-                                            <span className="detail-value">{room.price.toLocaleString('vi-VN')}đ</span>
+                                    <div className={cx('post-details')}>
+                                        <div className={cx('detail-item')}>
+                                            <FontAwesomeIcon icon={faMoneyBillWave} className={cx('detail-icon')} />
+                                            <span className={cx('detail-value')}>
+                                                {room.price.toLocaleString('vi-VN')}đ
+                                            </span>
                                         </div>
-                                        <div className="detail-item">
-                                            <i className="fas fa-expand detail-icon"></i>
-                                            <span>{room.area}m²</span>
+                                        <div className={cx('detail-item')}>
+                                            <FontAwesomeIcon icon={faExpand} className={cx('detail-icon')} />
+                                            <span className={cx('detail-value')}>{room.area}m²</span>
                                         </div>
-                                        <div className="detail-item">
-                                            <i className="fas fa-user detail-icon"></i>
-                                            <span>{room.maxOccupants} người</span>
+                                        <div className={cx('detail-item')}>
+                                            <FontAwesomeIcon icon={faUser} className={cx('detail-icon')} />
+                                            <span className={cx('detail-value')}>{room.maxOccupants} người</span>
                                         </div>
                                     </div>
 
-                                    <div className="post-amenities">
-                                        {room.furniture?.map((item) => (
-                                            <span key={item} className="amenity-tag">
-                                                <i
-                                                    className={`fas fa-${
-                                                        item === 'fridge'
-                                                            ? 'snowflake'
-                                                            : item === 'kitchen'
-                                                              ? 'utensils'
-                                                              : 'couch'
-                                                    } amenity-icon`}
-                                                ></i>
-                                                {item === 'fridge' ? 'Tủ lạnh' : item === 'kitchen' ? 'Bếp' : item}
-                                            </span>
-                                        ))}
+                                    <div className={cx('post-amenities')}>
+                                        {room.furniture?.map((item) => {
+                                            const amenityMap = {
+                                                'Điều hòa': { icon: faCouch, name: 'Điều hòa' }, // Giả sử 'couch' là điều hòa
+                                                'Tủ lạnh': { icon: faSnowflake, name: 'Tủ lạnh' },
+                                                Bếp: { icon: faUtensils, name: 'Bếp' },
+                                            };
+                                            const amenity = amenityMap[item];
+                                            if (!amenity) return null;
+                                            return (
+                                                <span key={item} className={cx('amenity-tag')}>
+                                                    <FontAwesomeIcon
+                                                        icon={amenity.icon}
+                                                        className={cx('amenity-icon')}
+                                                    />
+                                                    {amenity.name}
+                                                </span>
+                                            );
+                                        })}
                                     </div>
                                     <button
                                         onClick={() => navigate(`/room/${room.roomId}`)}
-                                        className="view-detail-button"
+                                        className={cx('view-detail-button')}
                                     >
                                         Xem Chi Tiết
                                     </button>
@@ -879,16 +914,16 @@ const PostsManage = () => {
                         ))}
                     </div>
 
-                    <div className="pagination">
-                        <nav className="pagination-nav">
-                            <button className="pagination-button" aria-label="Trang trước" title="Trang trước">
-                                <i className="fas fa-chevron-left"></i>
+                    <div className={cx('pagination')}>
+                        <nav className={cx('pagination-nav')}>
+                            <button className={cx('pagination-button')} aria-label="Trang trước" title="Trang trước">
+                                <FontAwesomeIcon icon={faChevronLeft} />
                             </button>
-                            <button className="pagination-button active">1</button>
-                            <button className="pagination-button">2</button>
-                            <button className="pagination-button">3</button>
-                            <button className="pagination-button" aria-label="Trang sau" title="Trang sau">
-                                <i className="fas fa-chevron-right"></i>
+                            <button className={cx('pagination-button', 'active')}>1</button>
+                            <button className={cx('pagination-button')}>2</button>
+                            <button className={cx('pagination-button')}>3</button>
+                            <button className={cx('pagination-button')} aria-label="Trang sau" title="Trang sau">
+                                <FontAwesomeIcon icon={faChevronRight} />
                             </button>
                         </nav>
                     </div>
