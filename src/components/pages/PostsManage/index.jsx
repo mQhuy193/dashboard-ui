@@ -22,6 +22,8 @@ import {
     faChevronLeft,
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+
+import RoomDetail from './RoomDetail';
 // import LogoutButton from '../LogOut';
 
 const cx = classNames.bind(styles);
@@ -57,6 +59,17 @@ const PostsManage = () => {
     const [popupImages, setPopupImages] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const processedRoomsRef = useRef(new Set());
+
+    const [selectedRoom, setSelectedRoom] = useState(null);
+    const [showRoomDetail, setShowRoomDetail] = useState(false);
+    const handleViewDetail = (room) => {
+        setSelectedRoom(room);
+        setShowRoomDetail(true);
+    };
+    const handleCloseDetail = () => {
+        setShowRoomDetail(false);
+        setSelectedRoom(null);
+    };
 
     // Function để refresh danh sách rooms
     const refreshRooms = useCallback(async () => {
@@ -903,10 +916,7 @@ const PostsManage = () => {
                                             );
                                         })}
                                     </div>
-                                    <button
-                                        onClick={() => navigate(`/room/${room.roomId}`)}
-                                        className={cx('view-detail-button')}
-                                    >
+                                    <button onClick={() => handleViewDetail(room)} className={cx('view-detail-button')}>
                                         Xem Chi Tiết
                                     </button>
                                 </div>
@@ -928,6 +938,16 @@ const PostsManage = () => {
                         </nav>
                     </div>
                 </div>
+                {showRoomDetail && selectedRoom && (
+                    <div className={cx('popup-overlay')} onClick={handleCloseDetail}>
+                        <div className={cx('popup-content')} onClick={(e) => e.stopPropagation()}>
+                            <button className={cx('close-button')} onClick={handleCloseDetail}>
+                                ✕
+                            </button>
+                            <RoomDetail room={selectedRoom} />
+                        </div>
+                    </div>
+                )}
             </main>
         </div>
     );
